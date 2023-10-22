@@ -3,6 +3,7 @@ import React from 'react'
 import { BiCommentAdd } from 'react-icons/bi'
 import { FaPeopleGroup } from 'react-icons/fa6'
 import { BsFillDiscFill, BsThreeDotsVertical, BsChatDotsFill } from 'react-icons/bs'
+import AvatarChat from '../../component/avatarchat'
 
 export default function HomePage() {
   return (
@@ -35,39 +36,47 @@ export default function HomePage() {
 
               {/* 1.menu komonitas */}
               <li>
-                <Link href={""} className='flex justify-center items-center'>
-                  <div className='avatar online'>
-                    <FaPeopleGroup size={23} />
-                  </div>
-                </Link>
-                <p>komonitas</p>
+                <div className="tooltip hover:tooltip-open  tooltip-bottom tooltip-warning" data-tip="komonitas">
+                  <Link href={""} className='flex justify-center items-center'>
+                    <div className='avatar online'>
+                      <FaPeopleGroup size={23} />
+                    </div>
+                  </Link>
+                </div>
               </li>
 
               {/* 2.menu status */}
               <li>
-                <Link href={""}>
-                  <div className='avatar online'>
-                    <BsFillDiscFill size={23} />
-                  </div>
-                </Link>
+                <div className="tooltip hover:tooltip-open  tooltip-bottom tooltip-warning" data-tip="status">
+                  <Link href={""}>
+                    <div className='avatar online'>
+                      <BsFillDiscFill size={23} />
+                    </div>
+                  </Link>
+                </div>
               </li>
 
               {/* 3.menu saluran */}
               <li>
-                <Link href={""}>
-                  <div className='avatar online'>
-                    <BsChatDotsFill size={23} />
-                  </div>
-                </Link>
+                <div className="tooltip hover:tooltip-open  tooltip-bottom tooltip-warning" data-tip="saluran">
+                  <Link href={""}>
+                    <div className='avatar online'>
+                      <BsChatDotsFill size={23} />
+                    </div>
+                  </Link>
+
+                </div>
               </li>
 
-              {/* 4.chat baru */}
+              {/* 4.menu chat baru */}
               <li>
-                <Link href={""}>
-                  <div className='avatar online'>
-                    <BiCommentAdd size={23} />
-                  </div>
-                </Link>
+                <div className="tooltip hover:tooltip-open  tooltip-bottom tooltip-warning" data-tip="chat baru">
+                  <Link href={""}>
+                    <div className='avatar online'>
+                      <BiCommentAdd size={23} />
+                    </div>
+                  </Link>
+                </div>
               </li>
 
               {/* 5.menu dari menu */}
@@ -88,7 +97,7 @@ export default function HomePage() {
           </div>
 
           {/* Sidebar content here */}
-          <li><a>Sidebar Item 1</a></li>
+          <li className='w-full m-0 p-0'><AvatarChat /></li>
           <li><a>Sidebar Item 2</a></li>
         </ul>
 
