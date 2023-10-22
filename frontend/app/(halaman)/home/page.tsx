@@ -40,6 +40,7 @@ export default function HomePage() {
                     <FaPeopleGroup size={23} />
                   </div>
                 </Link>
+                <p>komonitas</p>
               </li>
 
               {/* 2.menu status */}
