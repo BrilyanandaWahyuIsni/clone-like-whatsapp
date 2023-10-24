@@ -1,10 +1,16 @@
 'use client'
 import React, { useState } from 'react'
 import { BiSearch, BiSolidMicrophone } from 'react-icons/bi'
-import { BsFillEmojiLaughingFill, BsThreeDotsVertical } from 'react-icons/bs'
+import { BsFillEmojiLaughingFill, BsFillPersonFill, BsThreeDotsVertical } from 'react-icons/bs'
 import { GrAdd } from 'react-icons/gr'
+import { HiCamera, HiDocumentText } from 'react-icons/hi2'
 import { AiOutlineClose } from 'react-icons/ai'
+import { MdAddReaction } from 'react-icons/md'
 import ChatBubleKomponen from './chatbuble'
+import { FaImages, FaSquarePollHorizontal } from 'react-icons/fa6'
+import data from '@emoji-mart/data'
+import EmojiPicker from '@emoji-mart/react'
+import InputPesanKomponen from './inputpesan'
 
 export default function ChatBoxComponent() {
   const [showMenuSearching, setShowMenuSearching] = useState<boolean>(false)
@@ -81,26 +87,7 @@ export default function ChatBoxComponent() {
         </div>
 
         {/* bagian input pesan chat */}
-        <div className='h-16 bg-slate-700 flex items-center justify-around p-2'>
-
-          {/* emoji */}
-          <button className='w-[5%] flex justify-center items-center'>
-            <BsFillEmojiLaughingFill size={25} />
-          </button>
-
-          {/* button tambah file */}
-          <button className='w-[5%] flex justify-center items-center'>
-            <GrAdd size={25} />
-          </button>
-
-          {/* text input pesan */}
-          <input type="text" placeholder="Type here" className="input input-bordered input-md w-full" />
-
-          {/* microfon */}
-          <button className='w-[5%] flex justify-center items-center'>
-            <BiSolidMicrophone size={25} />
-          </button>
-        </div>
+        <InputPesanKomponen />
       </div>
 
 

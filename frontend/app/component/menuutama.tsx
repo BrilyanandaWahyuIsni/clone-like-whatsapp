@@ -9,12 +9,12 @@ export default function MenuUtamaKomponen() {
     <div className='sticky z-20 top-0 w-full'>
       <div className='p-2 flex justify-between items-center z-50  relative h-16 w-full bg-[orange]' >
         {/* lokasi foto profil atau avatar pengguna */}
-        <div className="avatar online placeholder w-14 h-14 box-border">
+        <Link href={"/profil"} className="avatar online placeholder w-14 h-14 box-border">
           <div className="bg-neutral-focus text-neutral-content rounded-full w-14">
             {/* <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
             <span className="text-xl">K</span>
           </div>
-        </div>
+        </Link>
 
         {/* menu-menu pada side bar aplikasi */}
         <ul className="menu menu-horizontal bg-base-200 h-16 rounded-box flex justify-center items-center bg-transparent">
