@@ -62,7 +62,7 @@ export default function ProfilPage() {
                 <IoMdCreate size={30} />
               </button>
             </div>
-            <p className='text-[0.9rem]'>Ini bukan nama pengguna atau PIN Anda. Nama ini akan terlihat oleh kontak WhatsApp anda</p>
+            <p className='text-[0.9rem] text-slate-600'>Ini bukan nama pengguna atau PIN Anda. Nama ini akan terlihat oleh kontak WhatsApp anda</p>
           </div>
         </div>
 

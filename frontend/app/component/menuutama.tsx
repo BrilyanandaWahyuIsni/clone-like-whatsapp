@@ -22,7 +22,7 @@ export default function MenuUtamaKomponen() {
           {/* 1.menu komonitas */}
           <li>
             <div className="tooltip hover:tooltip-open  tooltip-bottom tooltip-accent" data-tip="komonitas">
-              <Link href={""} className='flex justify-center items-center'>
+              <Link href={"/community"} className='flex justify-center items-center'>
                 <div className='avatar online flex justify-center items-center'>
                   <FaPeopleGroup size={23} />
                 </div>
