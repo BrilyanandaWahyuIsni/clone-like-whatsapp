@@ -22,6 +22,7 @@ export default function AvatarChat() {
         <div className='flex flex-row justify-center items-center h-[70px]'>
           <p className='truncate '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptates ad minus velit enim neque dolorem optio, magnam in. Perspiciatis, dolor.</p>
           {/* menu dropdown  */}
+          <div className='bg-green-500 text-[12px] p-1 rounded-full'>99</div>
           <div className="dropdown dropdown-left  group-hover:block hidden m-0 p-0">
             <label tabIndex={0} className="btn bg-transparent hover:bg-transparent border-0 m-0">
               <IoIosArrowDown size={25} className='m-0 p-0' />

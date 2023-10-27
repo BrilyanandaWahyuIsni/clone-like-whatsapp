@@ -33,7 +33,7 @@ export default function MenuUtamaKomponen() {
           {/* 2.menu status */}
           <li>
             <div className="tooltip hover:tooltip-open  tooltip-bottom tooltip-accent" data-tip="status">
-              <Link href={""}>
+              <Link href={"/status"}>
                 <div className='avatar online flex justify-center items-center'>
                   <BsFillDiscFill size={23} />
                 </div>
@@ -56,7 +56,7 @@ export default function MenuUtamaKomponen() {
           {/* 4.menu chat baru */}
           <li>
             <div className="tooltip hover:tooltip-open  tooltip-bottom tooltip-accent" data-tip="chat baru">
-              <Link href={""}>
+              <Link href={"/new-chat"}>
                 <div className='avatar online flex justify-center items-center'>
                   <BiCommentAdd size={23} />
                 </div>

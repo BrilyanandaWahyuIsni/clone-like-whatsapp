@@ -100,7 +100,6 @@ function RenderDataGrub({ url }: { url: string }) {
           itemSize={100}
           width={width}
           className='scrollbar-none'
-
         >
           {Row}
         </List>

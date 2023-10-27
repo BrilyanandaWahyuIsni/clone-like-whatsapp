@@ -1,7 +1,5 @@
-import Link from 'next/link'
 import React from 'react'
 import AvatarChat from '../../component/avatarchat'
-import ChatBoxComponent from '../../component/chatbox'
 import MenuUtamaKomponen from '../../component/menuutama'
 
 export default function HomePage() {
