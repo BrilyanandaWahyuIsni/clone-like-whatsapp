@@ -1,26 +1,48 @@
 "use client"
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeList as List } from 'react-window';
-
-// Now you can use <List {...props} />
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useState } from 'react'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { getDataServer } from '../../data/getData'
 import { CardCommunitasKomponen, CardCreateCommunitasKomponen } from '../../component/cardcommunitas';
+import { motion } from "framer-motion";
 
+
+const variants = {
+  initial: {
+    opacity: 0,
+    x: "-100%",
+  },
+  animate: {
+    opacity: 1,
+    x: 0,
+  },
+  exit: {
+    opacity: 0,
+    x: "-100%"
+  }
+}
 
 export default function CommonityPage() {
+  // useState untuk animasi keluar
+  const [animasi, setAnimasi] = useState<boolean>(true)
+
   // router dari back to home
   const router = useRouter()
 
   // fungsi untuk kembali ke halaman home
   function handleBtnBackToHome() {
+    setAnimasi(false)
     router.push("/home")
   }
 
   return (
-    <div className="w-[40%] h-[100%] pb-28 overflow-y-scroll scrollbar-none">
+    <motion.div
+      initial="initial"
+      animate={animasi ? "animate" : "exit"}
+      exit="exit"
+      variants={variants} className="w-[40%] h-[100%] pb-28 overflow-y-scroll scrollbar-none">
 
       {/* button kembali */}
       <div className='flex items-center p-10 pl-4 bg-orange-900 sticky top-0 z-30'>
@@ -32,9 +54,9 @@ export default function CommonityPage() {
         <h2 className='card-title ml-3'>Komonitas</h2>
       </div>
 
-      {<RenderDataGrub url='/api_test/community.json' />}
+      {<RenderDataGrub url='api_test/community_data_fake.json' />}
 
-    </div>
+    </motion.div>
   )
 }
 
@@ -57,14 +79,14 @@ function RenderDataGrub({ url }: { url: string }) {
 
   // jika data komonitas tidak ada atau error
   if (error) return (
-    <div className='h-auto flex items-center justify-start w-full p-4 rounded-none'>
+    <div className='h-auto flex items-center justify-center w-full p-4 rounded-none'>
       data salah...
     </div>
   )
   // jika data komunitas dalam proses pengambilan
   if (isLoading) return (
-    <div className='h-auto flex items-center justify-start w-full p-4 mt-5 rounded-none'>
-      loading...
+    <div className='h-auto flex items-center justify-center w-full p-4 mt-5 rounded-none'>
+      <span className="loading loading-bars loading-lg"></span>
     </div>
   )
 
@@ -77,7 +99,7 @@ function RenderDataGrub({ url }: { url: string }) {
           itemCount={komonitas.length}
           itemSize={100}
           width={width}
-          className='scrollbar-none flex flex-col-reverse'
+          className='scrollbar-none'
 
         >
           {Row}
