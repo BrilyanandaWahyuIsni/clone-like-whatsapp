@@ -1,35 +1,30 @@
 'use client'
 import React, { useState } from 'react'
-import { BiSearch, BiSolidMicrophone } from 'react-icons/bi'
-import { BsFillEmojiLaughingFill, BsFillPersonFill, BsThreeDotsVertical } from 'react-icons/bs'
-import { GrAdd } from 'react-icons/gr'
-import { HiCamera, HiDocumentText } from 'react-icons/hi2'
+import { BiSearch } from 'react-icons/bi'
+import { BsThreeDotsVertical } from 'react-icons/bs'
 import { AiOutlineClose } from 'react-icons/ai'
-import { MdAddReaction } from 'react-icons/md'
 import ChatBubleKomponen from './chatbuble'
-import { FaImages, FaSquarePollHorizontal } from 'react-icons/fa6'
-import data from '@emoji-mart/data'
-import EmojiPicker from '@emoji-mart/react'
 import InputPesanKomponen from './inputpesan'
+import { motion } from 'framer-motion'
 
 export default function ChatBoxComponent() {
-  const [showMenuSearching, setShowMenuSearching] = useState<boolean>(false)
+  const [showSidePageMenu, setShowSidePageMenu] = useState<boolean>(false)
 
   // fungsi untuk menampilkan menu searching
-  function handleShowMenuSearching(): void {
-    setShowMenuSearching(true)
+  function handleShowSidePageMenu(): void {
+    setShowSidePageMenu(true)
   }
 
   // fungsi untuk menghilangkan menu searching
-  function handleHideMenuSearching(): void {
-    setShowMenuSearching(false)
+  function handleHideSidePageMenu(): void {
+    setShowSidePageMenu(false)
   }
 
   return (
 
-    <div className='w-full flex h-screen'>
+    <div className='flex h-screen w-[70%]' >
       {/* bagian utama */}
-      <div className='h-screen w-full flex flex-col justify-between box-border'>
+      <motion.div layout className={`h-screen flex flex-col justify-between box-border ${showSidePageMenu ? 'w-[60%]' : "w-full"}`}>
 
         {/* bagian kepala chat */}
         <div className='h-16 bg-slate-700  flex items-center justify-between p-2'>
@@ -52,7 +47,7 @@ export default function ChatBoxComponent() {
 
           <div className='flex'>
             {/* pencarian */}
-            <button onClick={handleShowMenuSearching} className=" h-full  w-12 flex justify-center items-center ">
+            <button onClick={handleShowSidePageMenu} className=" h-full  w-12 flex justify-center items-center ">
               <BiSearch size={23} />
             </button>
             {/* menu lainnya */}
@@ -74,7 +69,7 @@ export default function ChatBoxComponent() {
         </div>
 
         {/* bagian isi chat */}
-        <div className='h-full bg-orange-500 overflow-y-scroll p-4'>
+        <div className='h-full flex-1 bg-orange-500 overflow-y-scroll p-4'>
           {Array(100).fill(null).map((_, index) => {
             if (index > 93) {
               return (
@@ -88,24 +83,23 @@ export default function ChatBoxComponent() {
 
         {/* bagian input pesan chat */}
         <InputPesanKomponen />
-      </div>
+      </motion.div>
 
 
       {/* bagian menu searching pesan */}
-      {showMenuSearching ? (
-        <div className='h-screen w-[70%] flex flex-col justify-between box-border bg-orange-50'>
-          {/* kepala pada menu searching pesan */}
-          <div className='h-16 bg-slate-900 w-full flex items-center pl-2'>
-            <button onClick={handleHideMenuSearching}>
-              <AiOutlineClose size={25} />
-            </button>
-            <h2 className='ml-9'>
-              Cari Pesan
-            </h2>
-          </div>
-          {/* text input menu searching */}
+      <motion.div layout className={`h-screen ${showSidePageMenu ? "w-[40%]" : "w-0"}  flex flex-col justify-between box-border bg-orange-50`}>
+        {/* kepala pada menu searching pesan */}
+        <div className='h-16 bg-slate-900 w-full flex items-center pl-2'>
+          <button onClick={handleHideSidePageMenu}>
+            <AiOutlineClose size={25} />
+          </button>
+          <h2 className='ml-9'>
+            Cari Pesan
+          </h2>
         </div>
-      ) : null}
+        {/* text input menu searching */}
+      </motion.div>
+
     </div>
   )
 }
