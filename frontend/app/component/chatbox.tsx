@@ -31,7 +31,7 @@ export default function ChatBoxComponent() {
 
     <div className='flex h-screen w-full' >
       {/* bagian utama */}
-      <motion.div layout className={`h-screen flex flex-col justify-between box-border ${showSidePageMenu ? 'lg:w-[60%] w-full' : "w-full"}`}>
+      <motion.div layout className={`h-screen relative flex flex-col justify-between box-border w-full`}>
 
         {/* bagian kepala chat */}
         <div className='h-16 bg-slate-700  flex items-center justify-between p-2'>
@@ -98,7 +98,7 @@ export default function ChatBoxComponent() {
 
 
       {/* bagian menu searching pesan */}
-      <motion.div layout className={`h-screen ${showSidePageMenu ? "lg:w-[40%] w-full" : "w-0"} bg- flex flex-col justify-between box-border bg-orange-50 z-50 lg:relative absolute top-0 right-0`}>
+      <motion.div layout className={`h-screen absolute lg:w-[45%] w-full ${showSidePageMenu ? "right-0 top-0" : "top-0 right-[-100%]"} bg- flex flex-col justify-between box-border bg-orange-50 z-50`}>
         {/* kepala pada menu searching pesan */}
         <div className='h-16 bg-slate-900 w-full flex items-center pl-2'>
           <button onClick={handleHideSidePageMenu}>
