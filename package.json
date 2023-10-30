@@ -7,8 +7,7 @@
     "dev": "cd frontend && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "data_fake": "node ./dummy_api/create.mjs"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emoji-mart/data": "^1.1.2",
@@ -20,6 +19,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-phone-input-2": "^2.15.1",
     "react-virtualized": "^9.22.5",
     "react-virtualized-auto-sizer": "^1.0.20",
