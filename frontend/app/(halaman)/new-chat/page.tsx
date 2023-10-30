@@ -19,12 +19,10 @@ export default function NewChatPage() {
     <div className=" w-full">
       {/* header */}
       <div className='h-[150px] box-border flex flex-col items-end sticky top-0 z-20 mb-3'>
-        <div className='bg-orange-400 p-5 pb-1 w-full flex flex-col justify-end h-full'>
-          <div className='flex items-center '>
-            {/* button kembali ke home */}
-            <button onClick={handleToHome} className='mr-5'><BsArrowLeft size={30} /></button>
-            <div className='text-lg'>Chat Baru</div>
-          </div>
+        <div className='bg-orange-400 p-5 w-full flex flex-row items-center h-full'>
+          {/* button kembali ke home */}
+          <button onClick={handleToHome} className='mr-5'><BsArrowLeft size={35} /></button>
+          <div className='text-lg'>Chat Baru</div>
         </div>
         <div className='w-full bg-orange-950 p-2'>
           <div className='join  flex justify-center '>

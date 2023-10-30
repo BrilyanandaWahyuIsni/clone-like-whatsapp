@@ -1,9 +1,16 @@
-import React from 'react'
+"use client"
+import React, { useContext } from 'react'
 import { IoIosArrowDown } from 'react-icons/io'
+import { ValueContext } from '../context/getSide'
 
 export default function AvatarChat() {
+  const { handleNilaiSide } = useContext(ValueContext)
+  const setNilaiSide = () => {
+    handleNilaiSide(true)
+  }
+
   return (
-    <button className=' p-3 pr-1 w-full flex justify-center group '>
+    <div className=' p-3 pr-1 w-full flex justify-center group '>
       {/* avatar atau foto profil */}
       <div className="avatar online placeholder mr-5">
         <div className="bg-neutral-focus text-neutral-content rounded-full w-14 h-14">
@@ -14,10 +21,10 @@ export default function AvatarChat() {
 
       <div className=' w-[80%] h-20 flex flex-col justify-center border-b-[1px]'>
         {/* nama user */}
-        <div className='flex flex-row justify-between items-end'>
+        <button onClick={setNilaiSide} className='flex flex-row justify-between items-end'>
           <h2 className='font-bold text-lg truncate'>Lorem ipsum dolor sit amet.</h2>
           <h3 className='pl-3'>kemarin</h3>
-        </div>
+        </button>
         {/* pesan user */}
         <div className='flex flex-row justify-center items-center h-[70px]'>
           <p className='truncate '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptates ad minus velit enim neque dolorem optio, magnam in. Perspiciatis, dolor.</p>
@@ -39,6 +46,6 @@ export default function AvatarChat() {
         </div>
       </div>
 
-    </button>
+    </div>
   )
 }

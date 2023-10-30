@@ -1,14 +1,16 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import { AiOutlineClose } from 'react-icons/ai'
+import { AiOutlineArrowLeft, AiOutlineClose } from 'react-icons/ai'
 import ChatBubleKomponen from './chatbuble'
 import InputPesanKomponen from './inputpesan'
 import { motion } from 'framer-motion'
+import { ValueContext } from '../context/getSide'
 
 export default function ChatBoxComponent() {
   const [showSidePageMenu, setShowSidePageMenu] = useState<boolean>(false)
+  const { handleNilaiSide } = useContext(ValueContext)
 
   // fungsi untuk menampilkan menu searching
   function handleShowSidePageMenu(): void {
@@ -20,17 +22,26 @@ export default function ChatBoxComponent() {
     setShowSidePageMenu(false)
   }
 
+  // fungsi untuk menghandle nilai value side
+  function setNilaiSide() {
+    handleNilaiSide(false)
+  }
+
   return (
 
     <div className='flex h-screen w-full' >
       {/* bagian utama */}
-      <motion.div layout className={`h-screen flex flex-col justify-between box-border ${showSidePageMenu ? 'w-[60%]' : "w-full"}`}>
+      <motion.div layout className={`h-screen flex flex-col justify-between box-border ${showSidePageMenu ? 'lg:w-[60%] w-full' : "w-full"}`}>
 
         {/* bagian kepala chat */}
         <div className='h-16 bg-slate-700  flex items-center justify-between p-2'>
 
+
           {/* bagian avatar, nama, dan status */}
-          <div className='flex'>
+          <div className='flex items-center'>
+            <button onClick={setNilaiSide} className='lg:hidden block mr-4' >
+              <AiOutlineArrowLeft size={30} />
+            </button>
             {/* avatar atau foto profil */}
             <div className="avatar placeholder  online">
               <div className="w-12 bg-slate-300 rounded-full">
@@ -70,7 +81,7 @@ export default function ChatBoxComponent() {
 
         {/* bagian isi chat */}
         <div className='h-full flex-1 bg-orange-500 overflow-y-scroll p-4'>
-          {Array(100).fill(null).map((_, index) => {
+          {/* {Array(100).fill(null).map((_, index) => {
             if (index > 93) {
               return (
                 <ChatBubleKomponen pesanAnda={true} />
@@ -78,7 +89,7 @@ export default function ChatBoxComponent() {
             } else {
               return <ChatBubleKomponen pesanAnda={false} />
             }
-          })}
+          })} */}
         </div>
 
         {/* bagian input pesan chat */}
@@ -87,7 +98,7 @@ export default function ChatBoxComponent() {
 
 
       {/* bagian menu searching pesan */}
-      <motion.div layout className={`h-screen ${showSidePageMenu ? "w-[40%]" : "w-0"}  flex flex-col justify-between box-border bg-orange-50`}>
+      <motion.div layout className={`h-screen ${showSidePageMenu ? "lg:w-[40%] w-full" : "w-0"} bg- flex flex-col justify-between box-border bg-orange-50 z-50 lg:relative absolute top-0 right-0`}>
         {/* kepala pada menu searching pesan */}
         <div className='h-16 bg-slate-900 w-full flex items-center pl-2'>
           <button onClick={handleHideSidePageMenu}>

@@ -12,14 +12,31 @@ const file = {
 }
 
 // format data file yang ingin di isi
-const dataInput = (yourAdmin, yesImage) => {
+const dataInput = (yourAdmin, yesImage, index) => {
   // silahkan rubah disini
+  let nnda = 0
+  let hari = "senin"
+  if (index > 7 && index <= 13) {
+    nnda = 1
+    hari = "selasa"
+  } else if (index > 13 && index <= 20) {
+    nnda = 2
+    hari = "rabu"
+  } else if (index > 20 && index <= 24) {
+    nnda = 3
+    hari = "kamis"
+  } else if (index > 24) {
+    nnda = 4
+    hari = "jum'at"
+  }
+
+
   const data = {
     chat_id: faker.string.uuid(),
     avatar_img: yourAdmin ? "" : avatar,
     isYour: yourAdmin,
     name: yourAdmin ? "admin" : "B Wahyu Isni",
-    time: "",
+    time: `${hari}/0${nnda}-April-2023`,
     balasan_id: "",
     imaga_pesan: yesImage ? faker.image.urlLoremFlickr({
       category: 'cats'
@@ -42,7 +59,7 @@ function Start() {
   }, (_, index) => {
     const randomAdmin = Math.floor(Math.random() * 10) % 2 === 0 ? false : true
     const randomImage = Math.floor(Math.random() * 10) % 2 === 0 ? false : true
-    dataToWrite.push(dataInput(randomAdmin, randomImage))
+    dataToWrite.push(dataInput(randomAdmin, randomImage, index))
   })
 
   KonversiDataToJson(dataToWrite)
