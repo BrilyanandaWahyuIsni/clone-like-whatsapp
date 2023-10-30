@@ -4,7 +4,7 @@ import MenuUtamaKomponen from '../../component/menuutama'
 
 export default function HomePage() {
   return (
-    <ul className=" w-[40%] h-auto pb-52 overflow-y-scroll scrollbar-none">
+    <ul className=" w-full ">
       {/* side bar aplikasi */}
       {/* sidebar menu menu */}
       <MenuUtamaKomponen />

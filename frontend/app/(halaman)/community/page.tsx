@@ -42,10 +42,10 @@ export default function CommonityPage() {
       initial="initial"
       animate={animasi ? "animate" : "exit"}
       exit="exit"
-      variants={variants} className="w-[40%] h-[100%] pb-28 overflow-y-scroll scrollbar-none">
+      variants={variants} className="w-full h-screen ">
 
       {/* button kembali */}
-      <div className='flex items-center p-10 pl-4 bg-orange-900 sticky top-0 z-30'>
+      <div className='flex items-center h-[20%] p-10 pl-4 bg-orange-900 sticky top-0 z-30'>
         {/* icon kembali */}
         <button className='btn btn-ghost rounded-full p-2 ' onClick={handleBtnBackToHome}>
           <AiOutlineArrowLeft size={30} />
@@ -53,8 +53,11 @@ export default function CommonityPage() {
         {/* keterangan */}
         <h2 className='card-title ml-3'>Komonitas</h2>
       </div>
+      {/* data */}
+      <div className="h-[80%] bg-green-50 w-full">
+        {<RenderDataGrub url='api_test/community_data_fake.json' />}
 
-      {<RenderDataGrub url='api_test/community_data_fake.json' />}
+      </div>
 
     </motion.div>
   )

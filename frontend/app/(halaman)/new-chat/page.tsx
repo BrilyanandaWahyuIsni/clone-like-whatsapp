@@ -16,7 +16,7 @@ export default function NewChatPage() {
 
 
   return (
-    <div className=" w-[40%] h-auto pb-52 overflow-y-scroll scrollbar-none">
+    <div className=" w-full">
       {/* header */}
       <div className='h-[150px] box-border flex flex-col items-end sticky top-0 z-20 mb-3'>
         <div className='bg-orange-400 p-5 pb-1 w-full flex flex-col justify-end h-full'>

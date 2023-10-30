@@ -15,7 +15,7 @@ export default function ProfilPage() {
   }
 
   return (
-    <div className="w-[40%] h-auto pb- overflow-y-scroll scrollbar-none">
+    <div className="w-full">
       {/* button kembali */}
       <div className='flex items-center p-10 pl-4 bg-orange-900'>
         {/* icon kembali */}

@@ -22,7 +22,7 @@ export default function ChatBoxComponent() {
 
   return (
 
-    <div className='flex h-screen w-[70%]' >
+    <div className='flex h-screen w-full' >
       {/* bagian utama */}
       <motion.div layout className={`h-screen flex flex-col justify-between box-border ${showSidePageMenu ? 'w-[60%]' : "w-full"}`}>
 
