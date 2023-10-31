@@ -18,8 +18,9 @@ export default function ChatBubleKomponen({ pesanAnda }: chatbuble) {
       {/* chat avatar */}
       {
         !pesanAnda && (
-          <div className="avatar placeholder overflow-hidden lg:w-12 lg:h-12 w-8 h-8 rounded-full bg-orange-950 mr-3">
-            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          <div className="avatar flex justify-center items-center overflow-hidden lg:w-12 lg:h-12 w-8 h-8 rounded-full bg-orange-950 mr-3">
+            {/* <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
+            <h1 className='text-lg'>B</h1>
           </div>
         )
       }
@@ -41,7 +42,7 @@ export default function ChatBubleKomponen({ pesanAnda }: chatbuble) {
           <button className='hover:bg-stone-700 p-1 rounded-lg group-hover/btn:visible invisible group/showOpsi shadow-lg'>
             <IoIosArrowDown size={32} />
             {/* pilihan opsi pesan */}
-            <div className='group-focus/showOpsi:flex w-48 z-50 p-1 bg-gray-900 hidden absolute right-[-4rem] top-14  flex-col gap-1 shadow-lg'>
+            <div className='group-focus/showOpsi:flex w-48 z-50 p-1 bg-gray-900 hidden absolute lg:right-[-4rem] right-[-10px] top-14  flex-col gap-1 shadow-lg'>
               <button className='btn rounded-none'>Balas</button>
               <button className='btn rounded-none'>Teruskan</button>
               <button className='btn rounded-none'>Share</button>

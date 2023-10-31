@@ -9,17 +9,49 @@ import { motion } from 'framer-motion'
 import { ValueContext } from '../context/getSide'
 
 export default function ChatBoxComponent() {
+  // useState menampilkan side page
   const [showSidePageMenu, setShowSidePageMenu] = useState<boolean>(false)
-  const { handleNilaiSide } = useContext(ValueContext)
-
   // scroll ref isi
   const scrollIsiRef = useRef<HTMLDivElement | null>(null)
 
+  // useState menampilkan posisi
+  const [showButtonBottom, setShowButtonBottom] = useState<boolean>(false)
+
+  // memanggil context
+  const { handleNilaiSide } = useContext(ValueContext)
+
+
+  // fungsi kembali ke scroll paling bawah
+  function goToBottomScroll() {
+    scrollIsiRef.current.scrollTop = scrollIsiRef.current.scrollHeight - scrollIsiRef.current.clientHeight
+  }
+
+
+  // use effect
   useEffect(() => {
+
     if (scrollIsiRef.current) {
-      scrollIsiRef.current.scrollTop = scrollIsiRef.current.scrollHeight
+
+      scrollIsiRef.current.scrollTop = scrollIsiRef.current.scrollHeight - scrollIsiRef.current.clientHeight
+      const handleScroll = () => {
+        if (scrollIsiRef.current.scrollTop != scrollIsiRef.current.scrollHeight - scrollIsiRef.current.clientHeight) {
+          setShowButtonBottom(true);
+        } else {
+          setShowButtonBottom(false);
+        }
+      };
+
+      scrollIsiRef.current.addEventListener('scroll', handleScroll);
+
+      return () => {
+        // Hapus event listener ketika komponen dibongkar
+        scrollIsiRef.current.removeEventListener('scroll', handleScroll);
+      };
     }
-  }, [scrollIsiRef])
+
+
+
+  }, [showButtonBottom])
 
   // fungsi untuk menampilkan menu searching
   function handleShowSidePageMenu(): void {
@@ -104,9 +136,18 @@ export default function ChatBoxComponent() {
 
         {/* bagian input pesan chat */}
         <InputPesanKomponen />
-        <button className='absolute opacity-30 hover:opacity-100 bottom-20 right-5 rounded-full w-[3rem] btn'>
-          <BiSolidDownArrow size={26} />
-        </button>
+
+        {/* tombol ke scroll bagian ke bawah */}
+        {
+          showButtonBottom &&
+          (
+            <button onClick={goToBottomScroll} className='absolute opacity-30 hover:opacity-100 bottom-20 right-5 rounded-full w-[3rem] btn'>
+              <BiSolidDownArrow size={26} />
+            </button>
+          )
+
+        }
+
       </motion.div>
 
 
