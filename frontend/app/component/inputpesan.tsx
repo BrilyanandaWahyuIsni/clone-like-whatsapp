@@ -8,6 +8,7 @@ import { GrAdd } from 'react-icons/gr'
 import { IoSendSharp } from 'react-icons/io5'
 import { HiCamera, HiDocumentText } from 'react-icons/hi2'
 import { MdAddReaction } from 'react-icons/md'
+import { motion } from 'framer-motion'
 
 export default function InputPesanKomponen() {
   // usestate untuk input dari nilai pesan pada text input
@@ -52,15 +53,15 @@ export default function InputPesanKomponen() {
 
           {/* emoji */}
           <button onClick={handleShowHideEmoji} className='w-[5%] flex justify-center items-center'>
-            <BsFillEmojiLaughingFill size={25} />
+            <BsFillEmojiLaughingFill size={20} />
           </button>
 
           {/* button tambah file */}
           <li className="dropdown dropdown-top p-0 m-0 w-[5%] flex justify-center items-center ">
             <div tabIndex={0} className='focus:bg-transparent hover:bg-transparent focus:rotate-45 focus:bg-slate-500 hover:bg-slate-500 rounded-full hover:glass p-2'>
-              <GrAdd size={25} />
+              <GrAdd size={20} />
             </div>
-            <ul tabIndex={0} className="dropdown-content z-[1000] menu p-2 shadow bg-slate-900 rounded-box w-52">
+            <ul tabIndex={0} className="dropdown-content z-[1000] left-4 menu p-2 shadow bg-slate-900 rounded-box w-52">
               <li><a><HiDocumentText size={30} color='blue' />Dokumen</a></li>
               <li><a><FaImages size={30} color='green' /> Foto dan Video</a></li>
               <li><a><HiCamera size={30} color='red' />Kamera</a></li>
@@ -71,21 +72,21 @@ export default function InputPesanKomponen() {
           </li>
 
           {/* text input pesan */}
-          <input type="text" value={valueInputPesan} onChange={handleInputPesan} placeholder="Ketik Pesan" className="input input-bordered input-md w-full" />
+          <input type="text" value={valueInputPesan} onChange={handleInputPesan} placeholder="Ketik Pesan" className="input input-bordered input-md lg:w-3/4 w-3/5" />
 
           {/* button kirim pesan */}
           {valueInputPesan === ""
             ? null
             : (
               <button className='w-[5%] flex justify-center items-center'>
-                <IoSendSharp size={25} />
+                <IoSendSharp size={20} />
               </button>
 
             )}
 
           {/* microfon */}
           <button className='w-[5%] flex justify-center items-center'>
-            <BiSolidMicrophone size={25} />
+            <BiSolidMicrophone size={20} />
           </button>
         </div>
 

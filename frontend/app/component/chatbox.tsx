@@ -1,6 +1,6 @@
 'use client'
-import React, { useContext, useState } from 'react'
-import { BiSearch } from 'react-icons/bi'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { BiSearch, BiSolidDownArrow } from 'react-icons/bi'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { AiOutlineArrowLeft, AiOutlineClose } from 'react-icons/ai'
 import ChatBubleKomponen from './chatbuble'
@@ -11,6 +11,15 @@ import { ValueContext } from '../context/getSide'
 export default function ChatBoxComponent() {
   const [showSidePageMenu, setShowSidePageMenu] = useState<boolean>(false)
   const { handleNilaiSide } = useContext(ValueContext)
+
+  // scroll ref isi
+  const scrollIsiRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (scrollIsiRef.current) {
+      scrollIsiRef.current.scrollTop = scrollIsiRef.current.scrollHeight
+    }
+  }, [scrollIsiRef])
 
   // fungsi untuk menampilkan menu searching
   function handleShowSidePageMenu(): void {
@@ -29,7 +38,7 @@ export default function ChatBoxComponent() {
 
   return (
 
-    <div className='flex h-screen w-full' >
+    <div className='flex h-screen w-screen overflow-hidden' >
       {/* bagian utama */}
       <motion.div layout className={`h-screen relative flex flex-col justify-between box-border w-full`}>
 
@@ -80,25 +89,29 @@ export default function ChatBoxComponent() {
         </div>
 
         {/* bagian isi chat */}
-        <div className='h-full flex-1 bg-orange-500 overflow-y-scroll p-4'>
-          {/* {Array(100).fill(null).map((_, index) => {
-            if (index > 93) {
+
+        <div ref={scrollIsiRef} className='h-full flex-1 bg-orange-500 overflow-y-scroll lg:p-4 p-1 relative'>
+          {Array(15).fill(null).map((_, index) => {
+            if (index > 9) {
               return (
                 <ChatBubleKomponen pesanAnda={true} />
               )
             } else {
               return <ChatBubleKomponen pesanAnda={false} />
             }
-          })} */}
+          })}
         </div>
 
         {/* bagian input pesan chat */}
         <InputPesanKomponen />
+        <button className='absolute opacity-30 hover:opacity-100 bottom-20 right-5 rounded-full w-[3rem] btn'>
+          <BiSolidDownArrow size={26} />
+        </button>
       </motion.div>
 
 
       {/* bagian menu searching pesan */}
-      <motion.div layout className={`h-screen absolute lg:w-[45%] w-full ${showSidePageMenu ? "right-0 top-0" : "top-0 right-[-100%]"} bg- flex flex-col justify-between box-border bg-orange-50 z-50`}>
+      <motion.div layout className={`h-screen absolute lg:w-[45%] w-full ${showSidePageMenu ? "right-0 top-0 " : "top-0 right-[-100%]"} bg- flex flex-col justify-between box-border bg-orange-50 z-50`}>
         {/* kepala pada menu searching pesan */}
         <div className='h-16 bg-slate-900 w-full flex items-center pl-2'>
           <button onClick={handleHideSidePageMenu}>
