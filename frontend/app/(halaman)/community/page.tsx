@@ -63,20 +63,26 @@ export default function CommonityPage() {
   )
 }
 
+const Komunitas = {
+  id: "",
+  nama_komunitas: "",
+  logo_komunitas: "",
+  pesan_belum_dibaca: 0,
+}
 
 // untuk merender data yang akan dipanggil
 function RenderDataGrub({ url }: { url: string }) {
   // pemanggilan data komonitas
   const { komonitas, error, isLoading } = getDataServer(url)
 
-  const Row = ({ index, style }) => {
+  const Row = ({ index, style }: { index: number, style: React.CSSProperties }) => {
     if (index === 0) {
       return (
         <CardCreateCommunitasKomponen styleName={style} />
       )
     }
     return (
-      <CardCommunitasKomponen styleName={style} itemKomonitas={komonitas[index]} />
+      <CardCommunitasKomponen styleName={style} itemKomonitas={komonitas?.[index] ?? Komunitas} />
     )
   };
 
@@ -99,7 +105,7 @@ function RenderDataGrub({ url }: { url: string }) {
       {({ height, width }) => (
         <List
           height={height}
-          itemCount={komonitas.length}
+          itemCount={komonitas?.length ?? 0}
           itemSize={100}
           width={width}
           className='scrollbar-none'

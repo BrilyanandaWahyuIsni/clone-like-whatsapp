@@ -9,10 +9,10 @@ interface ValueContex {
 
 const ValueContext = createContext<ValueContex | undefined>(undefined);
 
-const ValueProvider = ({ children }) => {
+const ValueProvider = ({ children }: { children: React.ReactNode }) => {
   const [nilaiSide, setNilaiSide] = useState<boolean>(false);
 
-  const handleNilaiSide = (nilai) => {
+  const handleNilaiSide = (nilai: boolean) => {
     setNilaiSide(nilai);
   };
 

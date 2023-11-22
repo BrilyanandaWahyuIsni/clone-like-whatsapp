@@ -11,7 +11,7 @@ export default function HomePage() {
       {/* Sidebar content here */}
       {
         Array(10).fill(null).map((_, index) => (
-          <li className='w-full mt-2 pr-2'><AvatarChat /></li>
+          <li key={index} className='w-full mt-2 pr-2'><AvatarChat /></li>
         ))
       }
     </ul>

@@ -1,26 +1,26 @@
 'use client'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
-export function PhoneValidator() {
+export function PhoneValidator({ sendPhone }: { sendPhone: (event: number) => void }) {
   // `value` will be the parsed phone number in E.164 format.
   // Example: "+12133734253".
-  const [value, setValue] = useState()
   const [fokusContainer, setFokusContainer] = useState<boolean>(false)
 
+
   // fungsi pengaturan phone number
-  function handlechangephone(e): void {
-    setValue(e)
+  function handlechangephone(e) {
+    sendPhone(e)
   }
 
   // fungsi pengaturan focus
-  function handleFocus():void{
+  function handleFocus(): void {
     setFokusContainer(true)
   }
 
   // fungsi pengaturan blur
-  function handleBlur():void{
+  function handleBlur(): void {
     setFokusContainer(false)
   }
 
@@ -30,7 +30,7 @@ export function PhoneValidator() {
     borderRadius: "10px",
   };
   const inputStyle = {
-    backgroundColor: '#1D232A', 
+    backgroundColor: '#1D232A',
     height: '48px',
     border: "1px solid #1D232A",
     outlineColor: "red",
@@ -40,7 +40,7 @@ export function PhoneValidator() {
   const container = {
     border: "1px solid #3ABFF8",
     borderRadius: "10px",
-    outline: `2px solid ${fokusContainer? "#3ABFF8" : "transparent"}`,
+    outline: `2px solid ${fokusContainer ? "#3ABFF8" : "transparent"}`,
     outlineOffset: '2px',
     overflow: 'hidden'
   }
@@ -48,7 +48,6 @@ export function PhoneValidator() {
   return (
     <PhoneInput
       country={'id'}
-      value={value}
       onChange={handlechangephone}
       inputProps={{
         name: 'phone',

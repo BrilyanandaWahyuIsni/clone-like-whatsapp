@@ -18,40 +18,44 @@ export default function ChatBoxComponent() {
   const [showButtonBottom, setShowButtonBottom] = useState<boolean>(false)
 
   // memanggil context
-  const { handleNilaiSide } = useContext(ValueContext)
+  const { handleNilaiSide } = useContext(ValueContext) ?? {}
+
 
 
   // fungsi kembali ke scroll paling bawah
   function goToBottomScroll() {
-    scrollIsiRef.current.scrollTop = scrollIsiRef.current.scrollHeight - scrollIsiRef.current.clientHeight
+    const currentRef = scrollIsiRef.current ?? { scrollTop: 0, scrollHeight: 0, clientHeight: 0 };
+    currentRef.scrollTop = currentRef.scrollHeight - currentRef.clientHeight
   }
 
 
   // use effect
   useEffect(() => {
 
-    if (scrollIsiRef.current) {
+    const currentRef = scrollIsiRef.current ?? { scrollTop: 0, scrollHeight: 0, clientHeight: 0 };
 
-      scrollIsiRef.current.scrollTop = scrollIsiRef.current.scrollHeight - scrollIsiRef.current.clientHeight
+    if (currentRef) {
+
+      currentRef.scrollTop = currentRef.scrollHeight - currentRef.clientHeight
       const handleScroll = () => {
-        if (scrollIsiRef.current.scrollTop != scrollIsiRef.current.scrollHeight - scrollIsiRef.current.clientHeight) {
+        if (currentRef?.scrollTop != currentRef?.scrollHeight - currentRef?.clientHeight) {
           setShowButtonBottom(true);
         } else {
           setShowButtonBottom(false);
         }
       };
 
-      scrollIsiRef.current.addEventListener('scroll', handleScroll);
+      scrollIsiRef.current?.addEventListener('scroll', handleScroll);
 
       return () => {
         // Hapus event listener ketika komponen dibongkar
-        scrollIsiRef.current.removeEventListener('scroll', handleScroll);
+        scrollIsiRef.current?.removeEventListener('scroll', handleScroll);
       };
     }
 
 
 
-  }, [showButtonBottom])
+  }, [showButtonBottom,])
 
   // fungsi untuk menampilkan menu searching
   function handleShowSidePageMenu(): void {
@@ -65,7 +69,9 @@ export default function ChatBoxComponent() {
 
   // fungsi untuk menghandle nilai value side
   function setNilaiSide() {
-    handleNilaiSide(false)
+    if (handleNilaiSide) {
+      handleNilaiSide(false)
+    }
   }
 
   return (
@@ -126,10 +132,10 @@ export default function ChatBoxComponent() {
           {Array(15).fill(null).map((_, index) => {
             if (index > 9) {
               return (
-                <ChatBubleKomponen pesanAnda={true} />
+                <ChatBubleKomponen key={index} pesanAnda={true} />
               )
             } else {
-              return <ChatBubleKomponen pesanAnda={false} />
+              return <ChatBubleKomponen key={index} pesanAnda={false} />
             }
           })}
         </div>

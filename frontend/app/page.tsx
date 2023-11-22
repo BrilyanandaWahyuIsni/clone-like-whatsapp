@@ -15,7 +15,7 @@ export default function Home(): React.ReactNode {
 
   // fungsi pergi ke halaman signup
   function handleSignup(): void {
-    router.push('signup')
+    router.push('/signup')
   }
 
   return (

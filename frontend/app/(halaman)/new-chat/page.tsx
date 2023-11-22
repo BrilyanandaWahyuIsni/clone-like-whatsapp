@@ -37,7 +37,7 @@ export default function NewChatPage() {
       {/* side content */}
       <div className='h-full w-full'>
         {Array(10).fill(0).map((_, index) => (
-          <button className='w-full'>
+          <button key={index} className='w-full'>
             <CardStatusKomponen img='' nama_pengguna='Babda' ket_lainnya='dasdas' key={""} />
           </button>
         ))}

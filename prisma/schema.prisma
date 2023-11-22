@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                     String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email                  String         @unique
+  username               String         @unique
+  noTelp                 String
+  kelamin                String
+  password               String
+  keterangan             String         @default("")
+  base_name              String         @default("")
+  tokenResetPass         Json           @default("{\"token\":\"\", \"expiredAt\":\"\"}")
+  url_profil_picture     String         @default("")
+  url_background_picture String         @default("")
+  url_media_sosial       String[]       @default([])
+  created_at             DateTime       @default(now())
+  updated_at             DateTime       @updatedAt
+  status                 Status[]
+  comments               Comment[]
+  reply_comments         ReplyComment[]
+  like_comments          LikeComment[]
+  like_status            LikeStatus[]
+  view_status            ViewStatus[]
+}
+
+model Status {
+  id               String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  User             User         @relation(fields: [userId], references: [id])
+  userId           String       @db.Uuid
+  media_url_status String[]     @default([])
+  text_status      String
+  isEdit           Boolean      @default(false)
+  publish          DateTime     @default(now())
+  updated_at       DateTime     @updatedAt
+  type_public      String       @default("public")
+  hastag           String[]     @default([])
+  comments         Comment[]
+  like_status      LikeStatus[]
+  view_status      ViewStatus[]
+}
+
+model ViewStatus {
+  id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Status   Status @relation(fields: [statusId], references: [id])
+  statusId String @db.Uuid
+  User     User   @relation(fields: [userId], references: [id])
+  userId   String @db.Uuid
+}
+
+model LikeStatus {
+  id       String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Status   Status? @relation(fields: [statusId], references: [id])
+  statusId String? @db.Uuid
+  User     User?   @relation(fields: [userId], references: [id])
+  userId   String? @db.Uuid
+}
+
+model Comment {
+  id              String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Status          Status         @relation(fields: [statusId], references: [id])
+  statusId        String         @db.Uuid
+  User            User           @relation(fields: [userId], references: [id])
+  userId          String         @db.Uuid
+  comment         String
+  replay_comments ReplyComment[]
+  like_comments   LikeComment[]
+}
+
+model LikeComment {
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Comment   Comment @relation(fields: [commentId], references: [id])
+  commentId String  @db.Uuid
+  User      User    @relation(fields: [userId], references: [id])
+  userId    String  @db.Uuid
+}
+
+model ReplyComment {
+  id                  String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Comment             Comment            @relation(fields: [commentId], references: [id])
+  commentId           String             @db.Uuid
+  User                User               @relation(fields: [userId], references: [id])
+  userId              String             @db.Uuid
+  reply_comment       String
+  like_reply_comments LikeReplyComment[]
+}
+
+model LikeReplyComment {
+  id             String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  ReplyComment   ReplyComment? @relation(fields: [replyCommentId], references: [id])
+  replyCommentId String?       @db.Uuid
+}
