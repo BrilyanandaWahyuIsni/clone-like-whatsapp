@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import { sendResponseHttp } from "../middlewares/sendData";
 import { StatusCodes } from "http-status-codes";
 import crypto from 'crypto'
+import { error } from "console";
 
 
 interface userData {
@@ -61,14 +62,14 @@ export async function LoginUser(req: Request, res: Response) {
         return sendResponseHttp(res, true, StatusCodes.CREATED, "Login Succeful", { "token": token })
 
       } else {
-        return sendResponseHttp(res, false, StatusCodes.NOT_FOUND, "Wrong Password!", { "msg": "error" })
+        return sendResponseHttp(res, false, StatusCodes.NOT_FOUND, "Wrong Password!", { "msg": error })
       }
 
     } else {
       return sendResponseHttp(res, false, StatusCodes.NOT_FOUND, "Email not found!", {})
     }
   } catch (error) {
-    return sendResponseHttp(res, false, StatusCodes.INTERNAL_SERVER_ERROR, "", {})
+    return sendResponseHttp(res, false, StatusCodes.NOT_FOUND, "User Not Found!", { "msg": error })
   }
 
 }

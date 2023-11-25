@@ -144,21 +144,58 @@ export async function GetStatusById(req: REQUSER, res: Response) {
             const statusById = await prisma.status.findFirst({
                 where: { id: req.params.id }
             })
-            if (statusById?.type_public === "private") {
-                if (statusById.userId === req.user?.id) {
-                    return sendResponseHttp(res, true, StatusCodes.OK, "", statusById)
+            if (statusById) {
+                if (statusById?.type_public === "private") {
+                    if (statusById.userId === req.user?.id) {
+                        return sendResponseHttp(res, true, StatusCodes.OK, "", statusById)
+                    } else {
+                        return sendResponseHttp(res, false, StatusCodes.LOCKED, "not status read!", {})
+                    }
                 } else {
-                    return sendResponseHttp(res, false, StatusCodes.LOCKED, "not status read!", {})
+                    return sendResponseHttp(res, true, StatusCodes.OK, "", statusById)
                 }
             } else {
-                return sendResponseHttp(res, true, StatusCodes.OK, "", statusById)
+                throw new Error("Status")
             }
         } catch (error) {
-            return sendResponseHttp(res, false, StatusCodes.NOT_FOUND, "Status not found!", error)
+            return sendResponseHttp(res, false, StatusCodes.NOT_FOUND, "Status not found!", { "msg": error })
         }
     }
     else {
         return sendResponseHttp(res, false, StatusCodes.NOT_FOUND, "Select a Status!", {})
+    }
+}
+
+// get many status 
+export async function GetManyStatusRandom(req: Request, res: Response) {
+
+    try {
+        const manyStatus = await prisma.status.findMany({
+            where: { type_public: "public" }
+        })
+        return sendResponseHttp(res, true, StatusCodes.OK, "Status Ok!", { manyStatus })
+    } catch (error) {
+        return sendResponseHttp(res, false, StatusCodes.NOT_FOUND, "Not found status in db", {})
+    }
+
+}
+
+// get status account
+export async function GetAccountStatus(req: REQUSER, res: Response) {
+
+    const checkUserById = await prisma.user.findFirst({
+        where: { id: req.user?.id }
+    })
+
+    try {
+        const manyStatus = await prisma.status.findMany({
+            where: (checkUserById?.id === req.params.id)
+                ? { userId: req.params.id }
+                : { userId: req.params.id, type_public: "public" }
+        })
+        return sendResponseHttp(res, true, StatusCodes.OK, "Status Ok!", { manyStatus })
+    } catch (error) {
+        return sendResponseHttp(res, false, StatusCodes.NOT_FOUND, "Not found status in db", {})
     }
 
 }
