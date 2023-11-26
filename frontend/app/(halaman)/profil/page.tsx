@@ -1,17 +1,17 @@
-"use client"
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import { AiOutlineArrowLeft, AiOutlineInfoCircle } from 'react-icons/ai'
-import { BsFillPersonFill, BsTelephoneFill } from 'react-icons/bs'
-import { FaCamera } from 'react-icons/fa6'
-import { IoMdCreate } from 'react-icons/io'
+"use client";
+import { useRouter } from 'next/navigation';
+import React from 'react';
+import { AiOutlineArrowLeft, AiOutlineInfoCircle } from 'react-icons/ai';
+import { BsFillPersonFill, BsTelephoneFill } from 'react-icons/bs';
+import { FaCamera } from 'react-icons/fa6';
+import { IoMdCreate } from 'react-icons/io';
 
 export default function ProfilPage() {
 
-  const router = useRouter()
+  const router = useRouter();
 
   function handleBtnBackToHome() {
-    router.back()
+    router.back();
   }
 
   return (
@@ -102,5 +102,5 @@ export default function ProfilPage() {
 
       </div>
     </div>
-  )
+  );
 }

@@ -12,5 +12,5 @@ export default function WarningLogin({ warningteks, isError }: { warningteks: st
       }
       <span>{warningteks}</span>
     </div>
-  )
+  );
 }

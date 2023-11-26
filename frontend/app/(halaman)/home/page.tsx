@@ -1,6 +1,6 @@
-import React from 'react'
-import AvatarChat from '../../component/avatarchat'
-import MenuUtamaKomponen from '../../component/menuutama'
+import React from 'react';
+import AvatarChat from '../../component/avatarchat';
+import MenuUtamaKomponen from '../../component/menuutama';
 
 export default function HomePage() {
   return (
@@ -15,5 +15,5 @@ export default function HomePage() {
         ))
       }
     </ul>
-  )
+  );
 }

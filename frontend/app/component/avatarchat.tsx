@@ -1,13 +1,13 @@
-"use client"
-import React, { useContext } from 'react'
-import { IoIosArrowDown } from 'react-icons/io'
-import { ValueContext } from '../context/getSide'
+"use client";
+import React, { useContext } from 'react';
+import { IoIosArrowDown } from 'react-icons/io';
+import { ValueContext } from '../context/getSide';
 
 export default function AvatarChat() {
-  const { handleNilaiSide } = useContext(ValueContext)
+  const { handleNilaiSide } = useContext(ValueContext);
   const setNilaiSide = () => {
-    handleNilaiSide(true)
-  }
+    handleNilaiSide(true);
+  };
 
   return (
     <div className=' p-3 pr-1 w-full flex justify-center group '>
@@ -47,5 +47,5 @@ export default function AvatarChat() {
       </div>
 
     </div>
-  )
+  );
 }

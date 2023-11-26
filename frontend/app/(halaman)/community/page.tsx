@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeList as List } from 'react-window';
-import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
-import { AiOutlineArrowLeft } from 'react-icons/ai'
-import { getDataServer } from '../../data/getData'
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { getDataServer } from '../../data/getData';
 import { CardCommunitasKomponen, CardCreateCommunitasKomponen } from '../../component/cardcommunitas';
 import { motion } from "framer-motion";
 
@@ -12,29 +12,29 @@ import { motion } from "framer-motion";
 const variants = {
   initial: {
     opacity: 0,
-    x: "-100%",
+    x:       "-100%",
   },
   animate: {
     opacity: 1,
-    x: 0,
+    x:       0,
   },
   exit: {
     opacity: 0,
-    x: "-100%"
+    x:       "-100%"
   }
-}
+};
 
 export default function CommonityPage() {
   // useState untuk animasi keluar
-  const [animasi, setAnimasi] = useState<boolean>(true)
+  const [animasi, setAnimasi] = useState<boolean>(true);
 
   // router dari back to home
-  const router = useRouter()
+  const router = useRouter();
 
   // fungsi untuk kembali ke halaman home
   function handleBtnBackToHome() {
-    setAnimasi(false)
-    router.push("/home")
+    setAnimasi(false);
+    router.push("/home");
   }
 
   return (
@@ -60,30 +60,30 @@ export default function CommonityPage() {
       </div>
 
     </motion.div>
-  )
+  );
 }
 
 const Komunitas = {
-  id: "",
-  nama_komunitas: "",
-  logo_komunitas: "",
+  id:                 "",
+  nama_komunitas:     "",
+  logo_komunitas:     "",
   pesan_belum_dibaca: 0,
-}
+};
 
 // untuk merender data yang akan dipanggil
 function RenderDataGrub({ url }: { url: string }) {
   // pemanggilan data komonitas
-  const { komonitas, error, isLoading } = getDataServer(url)
+  const { komonitas, error, isLoading } = getDataServer(url);
 
   const Row = ({ index, style }: { index: number, style: React.CSSProperties }) => {
     if (index === 0) {
       return (
         <CardCreateCommunitasKomponen styleName={style} />
-      )
+      );
     }
     return (
       <CardCommunitasKomponen styleName={style} itemKomonitas={komonitas?.[index] ?? Komunitas} />
-    )
+    );
   };
 
   // jika data komonitas tidak ada atau error
@@ -91,13 +91,13 @@ function RenderDataGrub({ url }: { url: string }) {
     <div className='h-auto flex items-center justify-center w-full p-4 rounded-none'>
       data salah...
     </div>
-  )
+  );
   // jika data komunitas dalam proses pengambilan
   if (isLoading) return (
     <div className='h-auto flex items-center justify-center w-full p-4 mt-5 rounded-none'>
       <span className="loading loading-bars loading-lg"></span>
     </div>
-  )
+  );
 
 
   return (

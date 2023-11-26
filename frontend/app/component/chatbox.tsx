@@ -1,31 +1,31 @@
-'use client'
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { BiSearch, BiSolidDownArrow } from 'react-icons/bi'
-import { BsThreeDotsVertical } from 'react-icons/bs'
-import { AiOutlineArrowLeft, AiOutlineClose } from 'react-icons/ai'
-import ChatBubleKomponen from './chatbuble'
-import InputPesanKomponen from './inputpesan'
-import { motion } from 'framer-motion'
-import { ValueContext } from '../context/getSide'
+'use client';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { BiSearch, BiSolidDownArrow } from 'react-icons/bi';
+import { BsThreeDotsVertical } from 'react-icons/bs';
+import { AiOutlineArrowLeft, AiOutlineClose } from 'react-icons/ai';
+import ChatBubleKomponen from './chatbuble';
+import InputPesanKomponen from './inputpesan';
+import { motion } from 'framer-motion';
+import { ValueContext } from '../context/getSide';
 
 export default function ChatBoxComponent() {
   // useState menampilkan side page
-  const [showSidePageMenu, setShowSidePageMenu] = useState<boolean>(false)
+  const [showSidePageMenu, setShowSidePageMenu] = useState<boolean>(false);
   // scroll ref isi
-  const scrollIsiRef = useRef<HTMLDivElement | null>(null)
+  const scrollIsiRef = useRef<HTMLDivElement | null>(null);
 
   // useState menampilkan posisi
-  const [showButtonBottom, setShowButtonBottom] = useState<boolean>(false)
+  const [showButtonBottom, setShowButtonBottom] = useState<boolean>(false);
 
   // memanggil context
-  const { handleNilaiSide } = useContext(ValueContext) ?? {}
-
+  const { handleNilaiSide } = useContext(ValueContext) ?? {};
 
 
   // fungsi kembali ke scroll paling bawah
   function goToBottomScroll() {
     const currentRef = scrollIsiRef.current ?? { scrollTop: 0, scrollHeight: 0, clientHeight: 0 };
-    currentRef.scrollTop = currentRef.scrollHeight - currentRef.clientHeight
+
+    currentRef.scrollTop = currentRef.scrollHeight - currentRef.clientHeight;
   }
 
 
@@ -36,7 +36,7 @@ export default function ChatBoxComponent() {
 
     if (currentRef) {
 
-      currentRef.scrollTop = currentRef.scrollHeight - currentRef.clientHeight
+      currentRef.scrollTop = currentRef.scrollHeight - currentRef.clientHeight;
       const handleScroll = () => {
         if (currentRef?.scrollTop != currentRef?.scrollHeight - currentRef?.clientHeight) {
           setShowButtonBottom(true);
@@ -54,23 +54,22 @@ export default function ChatBoxComponent() {
     }
 
 
-
-  }, [showButtonBottom,])
+  }, [showButtonBottom,]);
 
   // fungsi untuk menampilkan menu searching
   function handleShowSidePageMenu(): void {
-    setShowSidePageMenu(true)
+    setShowSidePageMenu(true);
   }
 
   // fungsi untuk menghilangkan menu searching
   function handleHideSidePageMenu(): void {
-    setShowSidePageMenu(false)
+    setShowSidePageMenu(false);
   }
 
   // fungsi untuk menghandle nilai value side
   function setNilaiSide() {
     if (handleNilaiSide) {
-      handleNilaiSide(false)
+      handleNilaiSide(false);
     }
   }
 
@@ -133,9 +132,9 @@ export default function ChatBoxComponent() {
             if (index > 9) {
               return (
                 <ChatBubleKomponen key={index} pesanAnda={true} />
-              )
+              );
             } else {
-              return <ChatBubleKomponen key={index} pesanAnda={false} />
+              return <ChatBubleKomponen key={index} pesanAnda={false} />;
             }
           })}
         </div>
@@ -172,5 +171,5 @@ export default function ChatBoxComponent() {
       </motion.div>
 
     </div>
-  )
+  );
 }

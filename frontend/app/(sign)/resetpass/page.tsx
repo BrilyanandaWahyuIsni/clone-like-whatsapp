@@ -1,7 +1,7 @@
-'use client'
-import Link from 'next/link'
-import React, { ChangeEvent, FormEvent, useState } from 'react'
-import WarningLogin from '../../component/warningContainer'
+'use client';
+import Link from 'next/link';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
+import WarningLogin from '../../component/warningContainer';
 import axios from 'axios';
 
 interface DataUser {
@@ -11,19 +11,20 @@ interface DataUser {
 }
 
 export default function ResetPassword() {
-  const [wrongEmail, setWrongEmail] = useState<boolean>(false)
-  const [tungguKode, setTungguKode] = useState<boolean>(false)
-  const [shownTokenInput, setShowTokenInput] = useState<boolean>(false)
-  const [btnTextSubmit, setBtnTextSubmit] = useState<string>("Get Token Reset")
-  const [warningTeks, setWarningTeks] = useState<string>("")
+  const [wrongEmail, setWrongEmail] = useState<boolean>(false);
+  const [tungguKode, setTungguKode] = useState<boolean>(false);
+  const [shownTokenInput, setShowTokenInput] = useState<boolean>(false);
+  const [btnTextSubmit, setBtnTextSubmit] = useState<string>("Get Token Reset");
+  const [warningTeks, setWarningTeks] = useState<string>("");
   // useState data email and password for reset your password
-  const [dataUser, setDataUser] = useState<DataUser>({ email: '', tokenResetPass: '', password: '' })
+  const [dataUser, setDataUser] = useState<DataUser>({ email: '', tokenResetPass: '', password: '' });
 
   // function for get data user if input on text input
   const handleChangeTextFromDataUser = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target
-    setDataUser((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = event.target;
+
+    setDataUser((prev) => ({ ...prev, [name]: value }));
+  };
 
 
   // function submit form to server
@@ -39,26 +40,26 @@ export default function ResetPassword() {
 
         })
         .catch(() => {
-          setWrongEmail(true)
-          setWarningTeks("Token anda salah atau expired!")
+          setWrongEmail(true);
+          setWarningTeks("Token anda salah atau expired!");
         })
-        .finally(() => setTungguKode(false))
+        .finally(() => setTungguKode(false));
     } else {
       axios.put("http://localhost:3210/user/getToken", { ...dataUser })
         .then(() => {
-          setShowTokenInput(true)
-          setBtnTextSubmit("Change Password")
-          setWrongEmail(false)
+          setShowTokenInput(true);
+          setBtnTextSubmit("Change Password");
+          setWrongEmail(false);
         })
         .catch(() => {
-          setWrongEmail(true)
-          setWarningTeks("Email tidak ditemukan")
+          setWrongEmail(true);
+          setWarningTeks("Email tidak ditemukan");
         })
         .finally(() => {
           setTungguKode(false);
-        })
+        });
     }
-  }
+  };
 
 
   return (
@@ -114,6 +115,6 @@ export default function ResetPassword() {
         <p>kembali ke halaman <Link href={'/'} className='link link-accent'>home</Link></p>
       </form>
     </div >
-  )
+  );
 }
 

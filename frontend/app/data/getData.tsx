@@ -1,5 +1,5 @@
 // import useSWR, { mutate } from 'swr';
-import useSWRImmutable from 'swr/immutable'
+import useSWRImmutable from 'swr/immutable';
 import axios from 'axios';
 
 interface Komunitas {
@@ -12,7 +12,7 @@ interface Komunitas {
 const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 export function getDataServer(url: string) {
-  const { data: komonitas, error, isLoading } = useSWRImmutable<Komunitas[]>(url, fetcher)
+  const { data: komonitas, error, isLoading } = useSWRImmutable<Komunitas[]>(url, fetcher);
 
-  return { komonitas, error, isLoading }
+  return { komonitas, error, isLoading };
 }

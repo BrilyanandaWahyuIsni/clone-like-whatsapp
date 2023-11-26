@@ -1,6 +1,6 @@
-import React from 'react'
-import { IoIosPeople } from 'react-icons/io'
-import Link from 'next/link'
+import React from 'react';
+import { IoIosPeople } from 'react-icons/io';
+import Link from 'next/link';
 
 interface Komunitas {
   id: string;
@@ -35,7 +35,7 @@ export function CardCommunitasKomponen({ itemKomonitas, styleName }: { itemKomon
         <h1 className='truncate'>{itemKomonitas.nama_komunitas}</h1>
       </div>
     </Link>
-  )
+  );
 }
 
 export function CardCreateCommunitasKomponen({ styleName }: { styleName: React.CSSProperties }) {
@@ -46,5 +46,5 @@ export function CardCreateCommunitasKomponen({ styleName }: { styleName: React.C
       </div>
       <h1>{"Komunitas Baru"}</h1>
     </Link>
-  )
+  );
 }

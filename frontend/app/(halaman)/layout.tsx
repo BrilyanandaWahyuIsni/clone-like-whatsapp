@@ -1,22 +1,22 @@
-"use client"
-import React, { useContext, useState } from 'react'
-import ChatBoxComponent from '../component/chatbox'
-import { ValueContext } from '../context/getSide'
-import axios from 'axios'
-import { useRouter } from 'next/navigation'
+"use client";
+import React, { useContext, useState } from 'react';
+import ChatBoxComponent from '../component/chatbox';
+import { ValueContext } from '../context/getSide';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 
 export default function HalamanLayout({ children }: { children: React.ReactNode }) {
 
-  const [loading, setLoading] = useState<boolean>(true)
-  const router = useRouter()
+  const [loading, setLoading] = useState<boolean>(true);
+  const router = useRouter();
 
   axios.get('http://localhost:3210/user/auth', { withCredentials: true })
     .then(() => setLoading(false))
-    .catch(() => router.replace("/"))
+    .catch(() => router.replace("/"));
 
   // import context from getSide => ValueProvider
-  const nilaiSide = useContext(ValueContext)?.nilaiSide
+  const nilaiSide = useContext(ValueContext)?.nilaiSide;
 
   return (
     <>
@@ -35,5 +35,5 @@ export default function HalamanLayout({ children }: { children: React.ReactNode 
           </div>)
       }
     </>
-  )
+  );
 }

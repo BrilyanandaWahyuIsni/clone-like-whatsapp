@@ -1,36 +1,35 @@
-import data from '@emoji-mart/data'
-import EmojiPicker from '@emoji-mart/react'
-import React, { ChangeEvent, useState } from 'react'
-import { BiSolidMicrophone } from 'react-icons/bi'
-import { BsFillEmojiLaughingFill, BsFillPersonFill } from 'react-icons/bs'
-import { FaImages, FaSquarePollHorizontal } from 'react-icons/fa6'
-import { GrAdd } from 'react-icons/gr'
-import { IoSendSharp } from 'react-icons/io5'
-import { HiCamera, HiDocumentText } from 'react-icons/hi2'
-import { MdAddReaction } from 'react-icons/md'
-import { motion } from 'framer-motion'
+import data from '@emoji-mart/data';
+import EmojiPicker from '@emoji-mart/react';
+import React, { ChangeEvent, useState } from 'react';
+import { BiSolidMicrophone } from 'react-icons/bi';
+import { BsFillEmojiLaughingFill, BsFillPersonFill } from 'react-icons/bs';
+import { FaImages, FaSquarePollHorizontal } from 'react-icons/fa6';
+import { GrAdd } from 'react-icons/gr';
+import { IoSendSharp } from 'react-icons/io5';
+import { HiCamera, HiDocumentText } from 'react-icons/hi2';
+import { MdAddReaction } from 'react-icons/md';
+import { motion } from 'framer-motion';
 
 export default function InputPesanKomponen() {
   // usestate untuk input dari nilai pesan pada text input
-  const [valueInputPesan, setValueInputPesan] = useState<string>("")
+  const [valueInputPesan, setValueInputPesan] = useState<string>("");
   // usestate untuk shown or hide emoji
-  const [showEmojiDiv, setShowEmojiDiv] = useState<boolean>(false)
+  const [showEmojiDiv, setShowEmojiDiv] = useState<boolean>(false);
 
   // fungsi untuk mengatur mengambil data emoji dan memasukan ke input pesan
   function handleDataEmoji(event) {
-    setValueInputPesan(prev => prev + event.native)
+    setValueInputPesan(prev => prev + event.native);
   }
 
   // fungsi untuk mengatur value input pesan
   function handleInputPesan(event: ChangeEvent<HTMLInputElement>) {
-    setValueInputPesan(event.target.value)
+    setValueInputPesan(event.target.value);
   }
 
   // fungsi untuk menampilkan atau menyembunyikan emoji
   function handleShowHideEmoji() {
-    setShowEmojiDiv(prev => !prev)
+    setShowEmojiDiv(prev => !prev);
   }
-
 
 
   return (
@@ -92,5 +91,5 @@ export default function InputPesanKomponen() {
 
       </div>
     </>
-  )
+  );
 }

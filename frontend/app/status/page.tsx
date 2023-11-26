@@ -1,32 +1,32 @@
-"use client"
-import React, { useState } from 'react'
-import Link from 'next/link'
-import { FaVolleyballBall } from "react-icons/fa"
-import CardStatusKomponen from '../component/cardStatus'
+"use client";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { FaVolleyballBall } from "react-icons/fa";
+import CardStatusKomponen from '../component/cardStatus';
 
-import axios from 'axios'
-import { useRouter } from 'next/navigation'
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function HalamanLayout() {
 
-  const [loading, setLoading] = useState<boolean>(true)
-  const router = useRouter()
+  const [loading, setLoading] = useState<boolean>(true);
+  const router = useRouter();
 
   axios.get('http://localhost:3210/user/auth', { withCredentials: true })
     .then(() => setLoading(false))
-    .catch(() => router.replace("/"))
+    .catch(() => router.replace("/"));
 
-  const [showSidePageMenu, setShowSidePageMenu] = useState<boolean>(false)
+  const [showSidePageMenu, setShowSidePageMenu] = useState<boolean>(false);
 
 
   // handle side
   function handleSidePage() {
-    setShowSidePageMenu(true)
+    setShowSidePageMenu(true);
   }
 
   // hide side page
   function handleHideSidePage() {
-    setShowSidePageMenu(false)
+    setShowSidePageMenu(false);
   }
 
   return (
@@ -75,7 +75,7 @@ export default function HalamanLayout() {
           )
       }
     </>
-  )
+  );
 }
 
 
@@ -85,5 +85,5 @@ function SideContent() {
       <FaVolleyballBall size={120} />
       <h2 className='p-3 text-center'>Klik pada kontak untuk melihat pembaruan status anda</h2>
     </div>
-  )
+  );
 }

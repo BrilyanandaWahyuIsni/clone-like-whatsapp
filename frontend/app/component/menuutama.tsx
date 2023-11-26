@@ -1,8 +1,8 @@
-import Link from 'next/link'
-import React from 'react'
-import { BiCommentAdd, BiSearch } from 'react-icons/bi'
-import { BsChatDotsFill, BsFillDiscFill, BsThreeDotsVertical } from 'react-icons/bs'
-import { FaPeopleGroup } from 'react-icons/fa6'
+import Link from 'next/link';
+import React from 'react';
+import { BiCommentAdd, BiSearch } from 'react-icons/bi';
+import { BsChatDotsFill, BsFillDiscFill, BsThreeDotsVertical } from 'react-icons/bs';
+import { FaPeopleGroup } from 'react-icons/fa6';
 
 export default function MenuUtamaKomponen() {
   return (
@@ -89,5 +89,5 @@ export default function MenuUtamaKomponen() {
         <input className="  join-item w-full bg-slate-800 pl-2 focus:outline-none" placeholder="Search" />
       </div>
     </div>
-  )
+  );
 }

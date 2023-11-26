@@ -1,21 +1,21 @@
-'use client'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import whatsappImg from '../public/img/whatsapp.png'
+'use client';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+import whatsappImg from '../public/img/whatsapp.png';
 
 export default function Home(): React.ReactNode {
   // inisiasi use router
-  const router = useRouter()
+  const router = useRouter();
 
   // fungsi pergi ke halaman login
   function handleLogin(): void {
-    router.replace('/login')
+    router.replace('/login');
   }
 
   // fungsi pergi ke halaman signup
   function handleSignup(): void {
-    router.push('/signup')
+    router.push('/signup');
   }
 
   return (
@@ -33,5 +33,5 @@ export default function Home(): React.ReactNode {
         </div>
       </div>
     </main>
-  )
+  );
 }

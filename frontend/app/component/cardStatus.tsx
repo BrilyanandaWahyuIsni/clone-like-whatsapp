@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 interface itemStatus {
   img: string | null;
@@ -25,5 +25,5 @@ export default function CardStatusKomponen({ img, nama_pengguna, ket_lainnya }: 
         <p className='text-xs'>{ket_lainnya}</p>
       </div>
     </div>
-  )
+  );
 }

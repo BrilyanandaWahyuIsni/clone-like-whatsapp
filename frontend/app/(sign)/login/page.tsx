@@ -1,6 +1,6 @@
-'use client'
-import Link from "next/link"
-import React, { ChangeEvent, FormEvent, useState } from "react"
+'use client';
+import Link from "next/link";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import WarningLogin from "../../component/warningContainer";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -13,51 +13,52 @@ interface LoginData {
 
 export default function LoginPage() {
   // set untuk menampilkan warning saat email atau password salah
-  const [ceckAuth, setCekAuth] = useState<boolean>(false)
+  const [ceckAuth, setCekAuth] = useState<boolean>(false);
   // useState loading button if send request to server
-  const [loadingBtn, setLoadingBtn] = useState<boolean>(false)
-  const [alertText, setAlertText] = useState<string>("")
-  const [isAlertError, setIsAlertError] = useState<boolean>(true)
+  const [loadingBtn, setLoadingBtn] = useState<boolean>(false);
+  const [alertText, setAlertText] = useState<string>("");
+  const [isAlertError, setIsAlertError] = useState<boolean>(true);
 
   // setup router next navigatiosn
-  const router = useRouter()
+  const router = useRouter();
 
   // useState for form login
   const [loginData, setLoginData] = useState<LoginData>({
-    email: "",
+    email:    "",
     password: ""
-  })
+  });
 
   // function on change text input and create to loginData
   const handleLoginData = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target
-    setLoginData(prevValue => ({ ...prevValue, [name]: value }))
-  }
+    const { name, value } = event.target;
+
+    setLoginData(prevValue => ({ ...prevValue, [name]: value }));
+  };
 
   // function go to home page if on click buttom "masuk"
   const handleLoginDataToHomePage = (event: FormEvent) => {
-    event.preventDefault()
-    setLoadingBtn(true)
+    event.preventDefault();
+    setLoadingBtn(true);
 
     axios.post("http://localhost:3210/user/signin", {
       ...loginData
     })
       .then(value => {
-        setCekAuth(true)
-        setIsAlertError(false)
-        setAlertText("Sukses login.")
-        Cookies.set("adnanid", value.data.msg.value)
-        router.replace('/home')
+        setCekAuth(true);
+        setIsAlertError(false);
+        setAlertText("Sukses login.");
+        Cookies.set("adnanid", value.data.msg.value);
+        router.replace('/home');
       })
       .catch(() => {
-        setCekAuth(true)
-        setIsAlertError(true)
-        setAlertText("Email atau Password anda salah!")
+        setCekAuth(true);
+        setIsAlertError(true);
+        setAlertText("Email atau Password anda salah!");
       })
       .finally(() => {
         setLoadingBtn(false);
-      })
-  }
+      });
+  };
 
 
   return (
@@ -109,5 +110,5 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
-  )
+  );
 }

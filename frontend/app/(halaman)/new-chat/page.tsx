@@ -1,17 +1,17 @@
-'use client'
-import React from 'react'
-import { BsArrowLeft } from 'react-icons/bs'
-import CardStatusKomponen from '../../component/cardStatus'
-import { AiOutlineSearch } from 'react-icons/ai'
-import { useRouter } from 'next/navigation'
+'use client';
+import React from 'react';
+import { BsArrowLeft } from 'react-icons/bs';
+import CardStatusKomponen from '../../component/cardStatus';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { useRouter } from 'next/navigation';
 
 export default function NewChatPage() {
   //navigatio router
-  const router = useRouter()
+  const router = useRouter();
 
   // kembali ke menu utama / home
   function handleToHome() {
-    router.push('home')
+    router.push('home');
   }
 
 
@@ -44,5 +44,5 @@ export default function NewChatPage() {
       </div>
 
     </div>
-  )
+  );
 }

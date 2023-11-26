@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { PhoneValidator } from "../../component/phonevalidator";
 import { ChangeEvent, FormEvent, useState } from "react";
@@ -16,60 +16,61 @@ interface DataNewMember {
 
 export default function Page() {
   const [dataNewMember, setDataNewMember] = useState<DataNewMember>({
-    "email": '',
+    "email":    '',
     "username": '',
-    "noTelp": '',
-    "kelamin": '',
+    "noTelp":   '',
+    "kelamin":  '',
     "password": ''
-  })
+  });
 
   // usestate untuk error saat mengirimkan data
-  const [showError, setShowError] = useState<boolean>(false)
+  const [showError, setShowError] = useState<boolean>(false);
   // usestate waiting send data to server bottom
-  const [shownBtnDaftar, setShownBtnDaftar] = useState<boolean>(true)
+  const [shownBtnDaftar, setShownBtnDaftar] = useState<boolean>(true);
   // useState isi pesan error
-  const [mainErrorMsg, setMainErrorMsg] = useState<string>("")
-  const [isError, setIsError] = useState<boolean>(false)
+  const [mainErrorMsg, setMainErrorMsg] = useState<string>("");
+  const [isError, setIsError] = useState<boolean>(false);
 
   // fungsi untuk submit
   const handleSubmitNewMembers = (event: FormEvent) => {
-    event.preventDefault()
-    setShownBtnDaftar(false)
+    event.preventDefault();
+    setShownBtnDaftar(false);
 
     // fungsi memanggil server
     axios.post("http://localhost:3210/user/signup", {
       ...dataNewMember
     })
       .then(() => {
-        setShowError(true)
-        setIsError(false)
-        setMainErrorMsg("Account berhasil dibuat!")
+        setShowError(true);
+        setIsError(false);
+        setMainErrorMsg("Account berhasil dibuat!");
       })
       .catch(error => {
-        setShowError(true)
-        setIsError(true)
+        setShowError(true);
+        setIsError(true);
         if (error.response.status === 400) {
-          setMainErrorMsg("Email atau username sudah pernah digunakan!")
+          setMainErrorMsg("Email atau username sudah pernah digunakan!");
         } else {
-          setMainErrorMsg("Periksa kembali data anda!")
+          setMainErrorMsg("Periksa kembali data anda!");
         }
       })
       .finally(() => {
-        setShownBtnDaftar(true)
-      })
-  }
+        setShownBtnDaftar(true);
+      });
+  };
 
 
   // merubah data
   const handleChangeInputEmail = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
+
     setDataNewMember((prevData) => {
-      return { ...prevData, [`${name}`]: value }
-    })
-  }
+      return { ...prevData, [`${name}`]: value };
+    });
+  };
   const getNumber = (event: number) => {
-    setDataNewMember(prev => ({ ...prev, noTelp: event.toString() }))
-  }
+    setDataNewMember(prev => ({ ...prev, noTelp: event.toString() }));
+  };
 
   return (
     <div className="card w-96 shadow-xl bg-green-950 glass">
@@ -137,5 +138,5 @@ export default function Page() {
       </div>
 
     </div>
-  )
+  );
 }
